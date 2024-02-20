@@ -1,6 +1,7 @@
 import json
 
 from playwright.async_api import Playwright, async_playwright
+from apps.scraper.models import Business
 
 
 async def extract_data(page) -> list:
@@ -22,34 +23,10 @@ async def extract_data(page) -> list:
     author_xpath = '//div[@class="TSUbDb"]'
     title_xpath = '//div[@data-attrid="title"]'
     address_xpath = '//div[@data-attrid="kc:/location/location:address"]'
-    image_xpath = '//button[data-clid="local-photo-browser"]//img'
+    image_xpath = '//button[@data-clid="local-photo-browser"]//img'
 
     # Scraped data
     data = []
-
-    # Scrap title.
-    try:
-        title = await page.locator(title_xpath).inner_text()
-    except:
-        title = ""
-
-    # Scrap address
-    try:
-        address = await page.locator(address_xpath).inner_text()
-    except:
-        address = ""
-
-    # Scrap Image
-    # try:
-    #     image = await page.locator(image_xpath).get_attribute("src")
-    # except:
-    #     image = ""
-
-    data.append({
-        "title": title,
-        "address": address,
-        "items": []
-    })
 
     await page.wait_for_selector(review_box_xpath)
     review_box = page.locator(review_box_xpath)
@@ -76,6 +53,30 @@ async def extract_data(page) -> list:
             'author_name': author_name,
             'review': review,
         })
+
+    # Scrap title.
+    try:
+        title = await page.locator(title_xpath).inner_text()
+    except:
+        title = ""
+
+    # Scrap address
+    try:
+        address = await page.locator(address_xpath).inner_text()
+    except:
+        address = ""
+
+    # Scrap Image
+    # try:
+    #     image = await page.locator(image_xpath).get_attribute("src")
+    # except:
+    #     image = ""
+
+    data.append({
+        "title": title,
+        "address": address,
+        "items": []
+    })
 
     data[0]['items'] = items
 
@@ -128,6 +129,12 @@ async def run(playwright: Playwright, search_term: str) -> None:
 
     # Extract all displayed reviews
     data = await extract_data(page)
+
+    # Insert data to database.
+    title = data[0]['title'] if data[0]['title'] else search_term
+    if title:
+        business = Business(title, data[0]['address'])
+        business.create()
 
     # Save all extracted data as a JSON file
     with open('google_reviews.json', 'w') as f:
