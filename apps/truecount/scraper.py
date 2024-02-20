@@ -1,4 +1,3 @@
-import asyncio
 import json
 
 from playwright.async_api import Playwright, async_playwright
@@ -56,7 +55,7 @@ async def run(playwright: Playwright, search_term: str) -> None:
         playwright: Playwright instance
     """
     browser = await playwright.chromium.launch(
-        headless=True,
+        headless=False,
         # proxy={'server': '127.0.0.1', 'port': 4444}
     )
     context = await browser.new_context()
@@ -103,7 +102,7 @@ async def run(playwright: Playwright, search_term: str) -> None:
     await browser.close()
 
 
-async def scrapper(text=None) -> None:
+async def scraper(text=None) -> None:
     if text:
         async with async_playwright() as playwright:
             await run(playwright, search_term=text)
