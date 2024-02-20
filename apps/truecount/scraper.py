@@ -20,29 +20,65 @@ async def extract_data(page) -> list:
     review_xpath = '//span[@data-expandable-section]'
     secondary_review_xpath = '//span[@class="review-full-text"]'
     author_xpath = '//div[@class="TSUbDb"]'
-    name_xpath = ''
+    title_xpath = '//div[@data-attrid="title"]'
+    address_xpath = '//div[@data-attrid="kc:/location/location:address"]'
+    image_xpath = '//button[data-clid="local-photo-browser"]//img'
+
+    # Scraped data
+    data = []
+
+    # Scrap title.
+    try:
+        title = await page.locator(title_xpath).inner_text()
+    except:
+        title = ""
+
+    # Scrap address
+    try:
+        address = await page.locator(address_xpath).inner_text()
+    except:
+        address = ""
+
+    # Scrap Image
+    # try:
+    #     image = await page.locator(image_xpath).get_attribute("src")
+    # except:
+    #     image = ""
+
+    data.append({
+        "title": title,
+        "address": address,
+        "items": []
+    })
 
     await page.wait_for_selector(review_box_xpath)
     review_box = page.locator(review_box_xpath)
-    data = []
+    items = []
     for review_box_index in range(await review_box.count()):
         result_elem = review_box.nth(review_box_index)
         # Scrap review text.
         elements = await result_elem.locator(review_xpath).element_handles()
-        review = await elements[0].inner_text()
-        review = review if review else await result_elem.locator(
-            secondary_review_xpath).inner_text()
+        try:
+            review = await elements[0].inner_text()
+            review = review if review else await result_elem.locator(
+                secondary_review_xpath).inner_text()
+        except:
+            review = ""
 
         # Scrap author name.
-        author_name = await result_elem.locator(author_xpath).inner_text()
-
-        # Scrap name.
+        try:
+            author_name = await result_elem.locator(author_xpath).inner_text()
+        except:
+            author_name = ""
 
         # Prepare list.
-        data.append({
+        items.append({
             'author_name': author_name,
             'review': review,
         })
+
+    data[0]['items'] = items
+
     return data
 
 
@@ -55,7 +91,7 @@ async def run(playwright: Playwright, search_term: str) -> None:
         playwright: Playwright instance
     """
     browser = await playwright.chromium.launch(
-        headless=False,
+        headless=True,
         # proxy={'server': '127.0.0.1', 'port': 4444}
     )
     context = await browser.new_context()
