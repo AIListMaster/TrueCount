@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
-  <link rel="canonical" href="https://appseed.us/adminlte"/>
-  
-  <title>
-    AdminLTE Flask - {% block title %}{% endblock %} | AppSeed
-  </title> 
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
+    <title>
+        {% block title %}{% endblock %} | TrueCount
+    </title>
 
-  <!-- Specific Page CSS goes HERE  -->  
-  {% block stylesheets %}{% endblock stylesheets %}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/assets/css/theme.css">
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 <body class="hold-transition {% block body_class %}{% endblock body_class %}">
 
-  {% block content %}{% endblock content %}
+<div class="flex h-screen overflow-hidden">
+    <!-- ===== Content Area Start ===== -->
+    <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <main>
+        {% block content %}{% endblock content %}
+        </main>
+    </div>
+</div>
 
-  <!-- Specific Page JS goes HERE  -->
-  {% block javascripts %}{% endblock javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
 
 </body>
 </html>

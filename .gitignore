@@ -33,3 +33,6 @@ apps/static/assets/.temp
 
 # Editor Files
 .idea
+
+# Node Modules
+node_modules
