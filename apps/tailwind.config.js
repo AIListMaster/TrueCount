@@ -4,9 +4,6 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: ["./templates/**/*.{html,js}"],
   theme: {
-    fontFamily: {
-      satoshi: ['Satoshi', 'sans-serif'],
-    },
     screens: {
       '2xsm': '375px',
       xsm: '425px',
@@ -287,6 +284,9 @@ module.exports = {
         'spin-1.5': 'spin 1.5s linear infinite',
         'spin-2': 'spin 2s linear infinite',
         'spin-3': 'spin 3s linear infinite',
+      },
+      fontFamily: {
+        'sans': ['"Work Sans"', ...defaultTheme.fontFamily.sans],
       },
     },
   },

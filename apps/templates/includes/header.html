@@ -1,121 +1,25 @@
-<header
-  class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none"
->
-  <div
-    class="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11"
-  >
-    <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
-      <!-- Hamburger Toggle BTN -->
-      <button
-        class="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
-        @click.stop="sidebarToggle = !sidebarToggle"
-      >
-        <span class="relative block h-5.5 w-5.5 cursor-pointer">
-          <span class="du-block absolute right-0 h-full w-full">
-            <span
-              class="relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white"
-              :class="{ '!w-full delay-300': !sidebarToggle }"
-            ></span>
-            <span
-              class="relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white"
-              :class="{ '!w-full delay-400': !sidebarToggle }"
-            ></span>
-            <span
-              class="relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white"
-              :class="{ '!w-full delay-500': !sidebarToggle }"
-            ></span>
-          </span>
-          <span class="du-block absolute right-0 h-full w-full rotate-45">
-            <span
-              class="absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white"
-              :class="{ '!h-0 delay-[0]': !sidebarToggle }"
-            ></span>
-            <span
-              class="delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white"
-              :class="{ '!h-0 dealy-200': !sidebarToggle }"
-            ></span>
-          </span>
-        </span>
-      </button>
-      <!-- Hamburger Toggle BTN -->
-      <a class="block flex-shrink-0 lg:hidden" href="index.html">
-        <img src="./images/logo/logo-icon.svg" alt="Logo" />
+<header class="bg-slate-50 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
+   <div class="hidden lg:sticky lg:top-0 lg:flex lg:w-16 lg:flex-none lg:items-center lg:whitespace-nowrap lg:py-12 lg:text-sm lg:leading-7 lg:[writing-mode:vertical-rl]">
+      <span class="font-mono text-slate-500">AI POWERED</span>
+      <span class="mt-6 flex gap-6 font-bold text-slate-900">DIRECTECHO<span aria-hidden="true" class="text-slate-400">/</span>TRUECOUNT</span></div>
+   <div class="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-slate-200 lg:px-8 lg:py-12 xl:px-12">
+      <a href="/" class="relative mx-auto block w-48 sm:w-64 lg:w-auto">
+         <img width="300" height="300" src="/static/assets/img/logo/logo.png">
       </a>
-    </div>
-    <div class="hidden sm:block">
-      <form action="https://formbold.com/s/unique_form_id" method="POST">
-        <div class="relative">
-          <button class="absolute left-0 top-1/2 -translate-y-1/2">
-            <svg
-              class="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M9.16666 3.33332C5.945 3.33332 3.33332 5.945 3.33332 9.16666C3.33332 12.3883 5.945 15 9.16666 15C12.3883 15 15 12.3883 15 9.16666C15 5.945 12.3883 3.33332 9.16666 3.33332ZM1.66666 9.16666C1.66666 5.02452 5.02452 1.66666 9.16666 1.66666C13.3088 1.66666 16.6667 5.02452 16.6667 9.16666C16.6667 13.3088 13.3088 16.6667 9.16666 16.6667C5.02452 16.6667 1.66666 13.3088 1.66666 9.16666Z"
-                fill=""
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M13.2857 13.2857C13.6112 12.9603 14.1388 12.9603 14.4642 13.2857L18.0892 16.9107C18.4147 17.2362 18.4147 17.7638 18.0892 18.0892C17.7638 18.4147 17.2362 18.4147 16.9107 18.0892L13.2857 14.4642C12.9603 14.1388 12.9603 13.6112 13.2857 13.2857Z"
-                fill=""
-              />
-            </svg>
-          </button>
 
-          <input
-            type="text"
-            placeholder="Type to search..."
-            class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"
-          />
-        </div>
-      </form>
-    </div>
-
-    <div class="flex items-center gap-3 2xsm:gap-7">
-      <!-- User Area -->
-      <div
-        class="relative"
-      >
-        <a
-          class="flex items-center gap-4"
-          href="#"
-        >
-          <span class="hidden text-right lg:block">
-            <span class="block text-sm font-medium text-black dark:text-white"
-              >Thomas Anree</span
-            >
-            <span class="block text-xs font-medium">UX Designer</span>
-          </span>
-
-          <span class="h-12 w-12 rounded-full">
-            <img src="./images/user/user-01.png" alt="User" />
-          </span>
-
-          <svg
-            class="hidden fill-current sm:block"
-            width="12"
-            height="8"
-            viewBox="0 0 12 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
-              fill=""
-            />
-          </svg>
-        </a>
+      <div class="mt-10 text-center lg:mt-12 lg:text-left">
+         <p class="text-xl font-bold text-slate-900"><a href="/">TrueCount</a></p>
+         <p class="mt-3 text-lg font-medium leading-8 text-slate-700">Providing true reviews of businesses.</p>
       </div>
-      <!-- User Area -->
-    </div>
-  </div>
+      <section class="mt-12 hidden lg:block">
+         <h2 class="flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
+            <svg aria-hidden="true" viewBox="0 0 10 10" class="h-2.5 w-2.5">
+               <path d="M0 5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5Z" class="fill-violet-300"></path>
+               <path d="M6 1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V1Z" class="fill-pink-300"></path>
+            </svg>
+            <span class="ml-2.5">About</span>
+         </h2>
+         <p class="mt-2 text-base leading-7 text-slate-700 lg:line-clamp-4">Truecount delivers genuine insights by analyzing sentiment in review text. Uncover realistic business reviews with confidence.</p>
+      </section>
+   </div>
 </header>

@@ -18,11 +18,6 @@ from apps.authentication.models import Users
 from apps.authentication.util import verify_pass
 
 
-@blueprint.route('/')
-def route_default():
-    return redirect(url_for('authentication_blueprint.login'))
-
-
 # Login & Registration
 
 @blueprint.route('/login', methods=['GET', 'POST'])
@@ -39,9 +34,8 @@ def login():
 
         # Check the password
         if user and verify_pass(password, user.password):
-
             login_user(user)
-            return redirect(url_for('authentication_blueprint.route_default'))
+            return redirect(url_for('admin_blueprint.dashboard'))
 
         # Something (user or pass) is not ok
         return render_template('accounts/login.html',
@@ -51,7 +45,7 @@ def login():
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',
                                form=login_form)
-    return redirect(url_for('admin_blueprint.index'))
+    return redirect(url_for('admin_blueprint.dashboard'))
 
 
 @blueprint.route('/register', methods=['GET', 'POST'])

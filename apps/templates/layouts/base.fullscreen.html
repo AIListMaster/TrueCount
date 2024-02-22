@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
+  <title>
+    {% block title %}{% endblock %} | TrueCount
+  </title>
+
+  <!-- ===== Head Start ===== -->
+  {% include 'includes/head.html' %}
+  <!-- ===== Head End ===== -->
+
+  <!-- Specific Page CSS goes HERE  -->
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="hold-transition {% block body_class %}{% endblock body_class %}">
+
+<div class="flex h-screen overflow-hidden">
+  <!-- ===== Content Area Start ===== -->
+  <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+    <main>
+      {% block content %}{% endblock content %}
+    </main>
+  </div>
+</div>
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>

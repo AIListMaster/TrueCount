@@ -8,9 +8,13 @@ from apps.scraper.scraper import scraper
 from flask import redirect, request, url_for
 
 
-@blueprint.route('/scrap',  methods=['POST'])
-def scrap():
-    search_term = request.form['search_term']
+@blueprint.route('/analyse', methods=['POST'])
+def analyse():
+    # search_term = request.form['search_term']
+    search_term = None
+    if request.is_json:
+        content = request.get_json()
+        search_term = content['search_term']
     if search_term:
         asyncio.run(scraper(text=search_term))
 

@@ -1,58 +1,113 @@
-{% extends "layouts/frontend.html" %}
+{% extends "layouts/base.html" %}
 
 {% block content %}
 <section class="bg-white dark:bg-gray-900 divide-y divide-slate-100 sm:mt-4 lg:mt-10 lg:border-t lg:border-slate-100">
   <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-    <h1
-      class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-      Search for businesses</h1>
-    <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">The Trucount
-      sentiment analysis AI will take approximately 2 to 3 minutes to gather all the reviews of the business and perform
-      analysis. Please bear with us during this process.</p>
-    <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-      <form class="w-96" method="post" action="/scrap">
-        {{ form.hidden_tag() }}
-        <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
+    <div id="searchApp" class="relative">
+      <h1
+        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        Search for businesses</h1>
+      <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">The Trucount
+        sentiment analysis AI will take approximately 2 to 3 minutes to gather all the reviews of the business and
+        perform
+        analysis. Please bear with us during this process.</p>
+      <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+        <form @submit.prevent="submitForm" class="w-96">
+          {{ form.hidden_tag() }}
+          <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                   xmlns="http://www.w3.org/2000/svg"
+                   fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+            </div>
+            {{ form.search_term(placeholder="Search", id="search", required="required",
+            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50
+            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", **{"v-model": "formData.search_term"})
+            }}
+            <button type="submit"
+                    class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Search
+            </button>
           </div>
-          {{ form.search_term(placeholder="Search", id="search", required="required", class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500") }}
-          <button type="submit"
-                  class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Search
-          </button>
+        </form>
+        <div v-if="isLoading" class="absolute flex top-0 left-0 h-full w-full bg-white/50">
+          <div
+            class="h-16 w-16 m-auto animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </section>
 <section class="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-   <article aria-labelledby="episode-5-title" class="py-10 sm:py-12">
-      <div class="lg:px-8">
-         <div class="lg:max-w-4xl">
-            <div class="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
-               <div class="flex flex-col items-start">
-                  <h2 id="episode-5-title" class="mt-2 text-lg font-bold text-slate-900"><a href="/5">5: Bill Lumbergh</a></h2>
-                  <time datetime="2022-02-24T00:00:00.000Z" class="order-first font-mono text-sm leading-7 text-slate-500">February 24, 2022</time>
-                  <p class="mt-1 text-base leading-7 text-slate-700">He’s going to need you to go ahead and come in on Saturday, but there’s a lot more to the story than you think.</p>
-                  <div class="mt-4 flex items-center gap-4">
-                     <button type="button" aria-label="Play episode 5: Bill Lumbergh" class="flex items-center gap-x-3 text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900">
-                        <svg aria-hidden="true" viewBox="0 0 10 10" class="h-2.5 w-2.5 fill-current">
-                           <path d="M8.25 4.567a.5.5 0 0 1 0 .866l-7.5 4.33A.5.5 0 0 1 0 9.33V.67A.5.5 0 0 1 .75.237l7.5 4.33Z"></path>
-                        </svg>
-                        <span aria-hidden="true">Listen</span>
-                     </button>
-                     <span aria-hidden="true" class="text-sm font-bold text-slate-400">/</span><a class="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900" aria-label="Show notes for episode 5: Bill Lumbergh" href="/5">Show notes</a>
-                  </div>
-               </div>
+  <article aria-labelledby="episode-5-title" class="py-10 sm:py-12">
+    <div class="lg:px-8">
+      <div class="lg:max-w-4xl">
+        <div class="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
+          <div class="flex flex-col items-start">
+            <h2 id="episode-5-title" class="mt-2 text-lg font-bold text-slate-900"><a href="/5">5: Bill Lumbergh</a>
+            </h2>
+            <time datetime="2022-02-24T00:00:00.000Z" class="order-first font-mono text-sm leading-7 text-slate-500">
+              February 24, 2022
+            </time>
+            <p class="mt-1 text-base leading-7 text-slate-700">He’s going to need you to go ahead and come in on
+              Saturday, but there’s a lot more to the story than you think.</p>
+            <div class="mt-4 flex items-center gap-4">
+              <button type="button" aria-label="Play episode 5: Bill Lumbergh"
+                      class="flex items-center gap-x-3 text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900">
+                <svg aria-hidden="true" viewBox="0 0 10 10" class="h-2.5 w-2.5 fill-current">
+                  <path
+                    d="M8.25 4.567a.5.5 0 0 1 0 .866l-7.5 4.33A.5.5 0 0 1 0 9.33V.67A.5.5 0 0 1 .75.237l7.5 4.33Z"></path>
+                </svg>
+                <span aria-hidden="true">Listen</span>
+              </button>
+              <span aria-hidden="true" class="text-sm font-bold text-slate-400">/</span><a
+              class="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+              aria-label="Show notes for episode 5: Bill Lumbergh" href="/5">Show notes</a>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </article>
+    </div>
+  </article>
 </section>
 {% endblock content %}
+
+{% block javascripts %}
+<script>
+  const {createApp, ref} = Vue;
+  const searchApp = createApp({
+    data() {
+      return {
+        formData: {
+          search_term: '',
+        },
+        isLoading: false,
+      };
+    },
+    methods: {
+      async submitForm() {
+        // Simulate an asynchronous operation (e.g., API call)
+        this.isLoading = true;
+
+        const response = await fetch('/analyse', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.formData),
+        });
+
+         console.log(response);
+      },
+    },
+  });
+
+  searchApp.mount('#searchApp');
+</script>
+
+{% endblock javascripts %}
