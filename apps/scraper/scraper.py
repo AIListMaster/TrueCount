@@ -2,6 +2,9 @@ import json
 
 from playwright.async_api import Playwright, async_playwright
 from apps.scraper.models import Business
+from apps.utils.utils import string_to_md5
+import io, base64
+from PIL import Image
 
 
 async def extract_data(page) -> list:
@@ -67,14 +70,24 @@ async def extract_data(page) -> list:
         address = ""
 
     # Scrap Image
-    # try:
-    #     image = await page.locator(image_xpath).get_attribute("src")
-    # except:
-    #     image = ""
+    image_url = ""
+    try:
+        image = await page.locator(image_xpath).get_attribute("src")
+        if image:
+            image = image[image.find(",") + 1:]
+            image_url = "./media/business/" + string_to_md5(image) + ".png"
+            img = Image.open(io.BytesIO(base64.decodebytes(bytes(image, "utf-8"))))
+            if img:
+                img.save(image_url)
+    except:
+        image_url = ""
+
+    print(image_url)
 
     data.append({
         "title": title,
         "address": address,
+        "image": image_url,
         "items": []
     })
 
@@ -83,7 +96,7 @@ async def extract_data(page) -> list:
     return data
 
 
-async def run(playwright: Playwright, search_term: str) -> None:
+async def run(playwright: Playwright, search_term: str) -> Business | None:
     """
     Main function which launches browser instance and performs browser
     interactions
@@ -92,7 +105,7 @@ async def run(playwright: Playwright, search_term: str) -> None:
         playwright: Playwright instance
     """
     browser = await playwright.chromium.launch(
-        headless=True,
+        headless=False,
         # proxy={'server': '127.0.0.1', 'port': 4444}
     )
     context = await browser.new_context()
@@ -131,10 +144,11 @@ async def run(playwright: Playwright, search_term: str) -> None:
     data = await extract_data(page)
 
     # Insert data to database.
+    business = None
     title = data[0]['title'] if data[0]['title'] else search_term
     if title:
-        business = Business(title, data[0]['address'])
-        business.create()
+        business = Business(title, data[0]['address'], data[0]['image'])
+        business = business.create()
 
     # Save all extracted data as a JSON file
     with open('google_reviews.json', 'w') as f:
@@ -144,8 +158,12 @@ async def run(playwright: Playwright, search_term: str) -> None:
     await context.close()
     await browser.close()
 
+    return business
 
-async def scraper(text=None) -> None:
+
+async def scraper(text=None) -> Business | None:
+    business = None
     if text:
         async with async_playwright() as playwright:
-            await run(playwright, search_term=text)
+            business = await run(playwright, search_term=text)
+    return business

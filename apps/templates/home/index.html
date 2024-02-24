@@ -12,7 +12,7 @@
         perform
         analysis. Please bear with us during this process.</p>
       <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-        <form @submit.prevent="submitForm" class="w-96">
+        <form @submit.prevent="submitForm" class="w-1/2">
           {{ form.hidden_tag() }}
           <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
           <div class="relative">
@@ -94,15 +94,31 @@
         // Simulate an asynchronous operation (e.g., API call)
         this.isLoading = true;
 
-        const response = await fetch('/analyse', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.formData),
-        });
+        try {
+          const response = await fetch('/analyse', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.formData),
+          });
 
-         console.log(response);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          // Parse the JSON response
+          const responseData = await response.json();
+
+          // Log the response data
+          console.log('Response:', responseData);
+
+          this.isLoading = false;
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          // Reset loader state on error
+          this.isLoading = false;
+        }
       },
     },
   });
