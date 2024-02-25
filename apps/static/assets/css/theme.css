@@ -855,8 +855,8 @@ video {
   width: 0.125rem;
 }
 
-.w-100 {
-  width: 25rem;
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-12 {
@@ -905,14 +905,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-4\/5 {
-  width: 80%;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .max-w-60 {

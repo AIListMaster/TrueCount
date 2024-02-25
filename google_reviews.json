@@ -1,153 +1,242 @@
 [
   {
-    "title": "",
-    "address": "Address: MRVV+MR8, Sector 9, Panchkula, Haryana 134109",
-    "image": "./media/business/69c7b414b8bac4aabc40dea1ceb5b716.png",
-    "items": [
-      {
-        "author_name": "Vinay Sharma",
-        "review": "Food was horrible to such as extent that it made be puke. Please don't buy food from them for the sake of your gut."
-      },
-      {
-        "author_name": "Ran Patel",
-        "review": "It's couple birthday decoration such a nice decoration Khushi event management"
-      },
-      {
-        "author_name": "kd malik",
-        "review": "Excellent food, great taste, service with smile \ud83d\ude0a"
-      },
-      {
-        "author_name": "Pooja Sharma",
-        "review": "This place is strictly not for the one's who are going with family. Crowd is not good there. No hygiene. Food was ok as per price. In short who are single and looking for daily meals in cheap price can go there. Not recommended for people who are going for weekend dinner and just for trying."
-      },
-      {
-        "author_name": "Nitin Verma",
-        "review": "Although very small and very normal dhaba but food is really fresh and tasty.\nMust try the food.Very economic too.Almost Rs. 100/- per person."
-      },
-      {
-        "author_name": "Vishwajeet Babbar (VB)",
-        "review": "Boht vadiya khana khazana to bi vadiya dishes. Check ke maza aagya."
-      },
-      {
-        "author_name": "Sourabh Anand",
-        "review": "Good preparation of shahi pander...Never had a different taste like the one owner use to prepare.....Do try aloo ka tandoori prantha thy are too good...Have also tried tadke wali maa ki dal with rajmas mix..Awsum food ...But not a idol place to sit with family...Just get packed ur stuff and take away to enjoy it with family at home"
-      },
-      {
-        "author_name": "Pushkar",
-        "review": "Food quality is not good nor cleanliness."
-      },
-      {
-        "author_name": "Furtunate Bibek",
-        "review": "Very tasty  food\ud83c\udf72\ud83c\udf72\ud83c\udf72"
-      },
-      {
-        "author_name": "shubham jain",
-        "review": "Very tasty food with reasonable rates"
-      },
-      {
-        "author_name": "Punjabi Wroster",
-        "review": "very very delicious food comparision other"
-      },
-      {
-        "author_name": "Rahul Boora",
-        "review": "Amazing food at cheapest price"
-      },
-      {
-        "author_name": "Ankit Goyal",
-        "review": "Vegetarian options: You can get good food affordable prices. You can ask the tandoor wala to cook roti as per your requirement or like... He is very good and polite.The owner is also good and polite. Do visit."
-      },
-      {
-        "author_name": "Sarbjeet Singh Sembhi",
-        "review": "\ud83d\ude18\ud83d\ude18\ud83d\ude18\ud83d\ude18"
-      },
-      {
-        "author_name": "rohit kumaar tewari",
-        "review": "Vegetarian options: Very good food and less oil and spice and very lite \ud83d\ude00"
-      },
-      {
-        "author_name": "Sonu Contractor",
-        "review": ""
-      },
-      {
-        "author_name": "Rohit Sharma",
-        "review": ""
-      },
-      {
-        "author_name": "sandeep bains",
-        "review": ""
-      },
-      {
-        "author_name": "Sudhir Dubey",
-        "review": ""
-      },
-      {
-        "author_name": "gulshan rana",
-        "review": ""
-      },
-      {
-        "author_name": "Dheeraj Thakur",
-        "review": ""
-      },
-      {
-        "author_name": "Urmila Bansiwal",
-        "review": ""
-      },
-      {
-        "author_name": "Sk Bhooker",
-        "review": ""
-      },
-      {
-        "author_name": "Imran Khan",
-        "review": ""
-      },
-      {
-        "author_name": "Kapil Roy",
-        "review": ""
-      },
-      {
-        "author_name": "Kundan Prasad",
-        "review": ""
-      },
-      {
-        "author_name": "A D",
-        "review": ""
-      },
-      {
-        "author_name": "Uttam Kumar",
-        "review": ""
-      },
-      {
-        "author_name": "Manoj Prabhakers",
-        "review": ""
-      },
-      {
-        "author_name": "enlightenment know yourself",
-        "review": ""
-      },
-      {
-        "author_name": "pankaj kanwar",
-        "review": ""
-      },
-      {
-        "author_name": "Saurabh Prajapti",
-        "review": ""
-      },
-      {
-        "author_name": "vasundhra sharma",
-        "review": ""
-      },
-      {
-        "author_name": "naman hurria",
-        "review": ""
-      },
-      {
-        "author_name": "Anurag Singh",
-        "review": ""
-      },
-      {
-        "author_name": "Dishant Chaudhary",
-        "review": ""
-      }
-    ]
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNkbUt2RnN3RRAB",
+    "contributor_name": "Kundan Powar",
+    "contributor_id": "117768089990701457635",
+    "review": "Visited the place with family friends to savour the south Indian dishes which we were told was best in the town.The entire experience was awesome. The food, the ambiance and the service. All was top class.We not only enjoyed Dosa, but also chole-bhature and ice creams.Highly recommend."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNkbllQRFVBEAE",
+    "contributor_name": "Vaibhav",
+    "contributor_id": "111101955320224860327",
+    "review": "We went there for a friend's bday. The food was so delicious. Must try their honey chilli potato and manchurian & noodles. The drinks were good too, we got fresh lime and badaam milk. The staff was very polite amd provided top notch service. Overall, we had an amazing experience."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUQxZzhHTzZRRRAB",
+    "contributor_name": "LOOK MASTERS",
+    "contributor_id": "118181057709229466986",
+    "review": "Sindhi Sweets in sector 11 in Panchkula is very well located. It has a good variety of sweets aka mithai , bakery items , confectionery, Street food like gol gappa , papri chaat , bhel puris etc . Also it has a restaurant serving an  all vegetarian menu having indian , Chinese & continental menu having both starters and main course . Also has a good range of desserts and beverages . The interiors are well done , bright lit and elegant. The service staff is well mannered and efficient and the kitchen staff too is fast in their preparations and the dishes are well presented and well portioned.Vegetarian options: All vegetarian menu is available.Parking: Good parking space available in front of this business.Kid-friendliness: Pretty kids friendly place."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNsX2V1S2dRRRAB",
+    "contributor_name": "Tripta Negi",
+    "contributor_id": "110761439569092455984",
+    "review": "Me and my sister visited there for some snacking.We were out for shopping and after that we wanted to eat something yummy and not so heavy, so we decided to explore newly opened Sindhi Sweets at Sector 11.We tried their Rasmalai, Red velvet pastry, gajar ka halwa, veg puff and Bhalla papdi chaat.Everything looked nice and was served well.The seating area near chaat counter is where we sat. The restaurant looks nice and felt okay, but this seating near the chaat counter felt a bit dark. (Not lit enough)Out of all the things I tried, Gajar ka halwa and Veg puff tasted the best.Rasmalai had a flavour of milk powder/ condensed milk or custard mix.Red velvet wasn\u2019t very fresh, it tasted okay.The chaat was also okay-ish taste wise.Gajar ka halwa on the other hand was really good and perfectly sweet. Veg puff also was flaky and tasted good.We had a nice experience altogether.They have large variety of cookies, gift packs and of course sweets, which look and taste good. :)"
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNGbGNYekt3EAE",
+    "contributor_name": "Vs O",
+    "contributor_id": "112202269967659861202",
+    "review": "Conveniently located in the sector 11 market, but parking can be a challenge here.Sindhi Sweets is a treat for people with a sweet tooth. Tried the rasmalai which was above average, though the serving size was decent. I only wish the syrup was little thicker and sweeter. The flavor at the Elante mall shop is far better!The gulab jamun was big and yumm and the rabdi was good.The service was quick and the people behind the counter are polite and helpful.The shop offers a huge variety of delicacies to choose from.Overall the place is great to satisfy your taste buds."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNoeEkzTGVBEAE",
+    "contributor_name": "Tilak Kalsotra",
+    "contributor_id": "117859529878522947715",
+    "review": "Sindhi Sweets -Sector-11, Panchkula. Serving the city since 1976, offers a delightful experience:Welcoming Ambience:Step into a warm and inviting atmosphere.Hygiene Excellence:Experience a spotless environment with no hygiene concerns.Delicious Vegetarian Cuisine:Indulge in a delectable array of vegetarian dishes.Varied Menu:Explore a diverse menu featuring ice creams, gift packs, dry fruits, sweets, snacks, and flowers bouquets.Party Gifting Solutions:Find everything you need for gifting at parties, from sweets to food items.Impeccable Cleanliness:Rest assured with well-maintained washrooms.Convenient Payment Options:Enjoy the ease of UPI payments and debit/credit card transactions.Courteous Staff:Interact with a friendly and well-behaved team.Online Ordering:For convenience, Sindhi Sweets is also available on Zomato and Swiggy for online orders.Overall, a delightful experience awaits yoVegetarian options: It is veg restaurant.Kid-friendliness: Lot of space available"
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNaZ2NXcDVRRRAB",
+    "contributor_name": "ruchika kashyap",
+    "contributor_id": "102691080692274619754",
+    "review": "Sindhi sweets offers good variety in vegetarian options.Ordered their hyped chane bhature but didn't like it. Paani golgappa was also a disappointing dish here. Although chaats and sweets are much recommended here as they offer freshly prepared motichoor Desi ghee laddoos.Ambience is great.It mostly has heavy rush on weekends.Suggestion - They should add some more combo/ platter food options in their menu.Vegetarian options: This restaurant is pure vegetarian and offers large variety of veg options."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNwNm9xalFREAE",
+    "contributor_name": "Akhil Shukla",
+    "contributor_id": "109542538025950320960",
+    "review": "Surprisingly the food was horrible when we dined for breakfast last Saturday.The so hyped Chole Bhature were super disappointing, rather the aloo ki sabji given along was better than Chole itself.We had ordered Masala Dosa, Rava Paneer dosa - insane.Who adds coriander leaves in masala dosa - needs good training there. We were group of 10 and none of us could finish individual dishes that were ordered.The great thing was Sweet lassi which we liked and above expectation. But guys your food quality has gone down so bad that we won\u2019t dine ever there. I\u2019m shocked to still think of so worse Chole Bhature.. ideally that must be your signature item on the menu. And when I\u2019m writing this, trust that I\u2019m a food connoisseur and know versatility of food. Your production team needs a real hard work.Service was good and appreciation to them.Genuine feedback by a hotelier."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURhanNIemR3EAE",
+    "contributor_name": "Sushant Shukla",
+    "contributor_id": "107342495446097837964",
+    "review": "Great place to eat. I really loved this place. The staffs are great and food is very tasty.   one of the most hygienic place for your street food and sweet tooth cravings in Tricity.I love all the braches of Sindhi Sweets due to their services and delicious food.Must try dishes and my personal favorites are1.Chole Bhature2.Pani Puri and Dhai puri3. Cake4. Noodles5.Pav bhaji6. Kaju Katli7. Fresh LadduAnd ofcourse u can pick any sweet or Namkeen and they are the best.I have also tried their grill sandwiches, cake and they all taste amazing. Cheers For #SindhiSweetsTeam sector 11 Panchkula."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUN4cjlqdUp3EAE",
+    "contributor_name": "chakshu wadhwa",
+    "contributor_id": "112629022861394787586",
+    "review": "The food was overpriced as the price and quantity were not proportionateThe chaat and desert were comparitively still really niceThe service and atmosphere was decent as well"
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUN4aDlMeW5nRRAB",
+    "contributor_name": "Honey Aggarwal",
+    "contributor_id": "108355952092159490604",
+    "review": "The food was good..nice place to be there with family and friends... sindhi's special channa bhatura and \ud83d\ude0b \ud83c\udf6c \ud83c\udf6b With a welcoming ambiance and attentive staff, you'll feel right at home. The sweets are perfect combination of flavors and textures. The generous portion size ensures a satisfying quality, Don't miss this delicious experience in sidhi sweets \ud83d\ude0b"
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUQtanZENldREAE",
+    "contributor_name": "Varsha Yadav",
+    "contributor_id": "109076649664261191193",
+    "review": "Place beautiful but lighting is dim so if u r a dim light lover u can go here, food is average some stuff is gud some is nt tht gud but I still love Anupam sweets more than sindhi sweets. Parking space is available it's near or on the road u can dine or take away easily."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURWMFBfekdnEAE",
+    "contributor_name": "Raj Kat",
+    "contributor_id": "117018835510466326596",
+    "review": "Ordered chana bhatura and rajkachori. Quality was not good as it used to be...as I visited so many times before.\nChana kulcha aalo sabzi was like in Puri aalo plate. Chana taste was also flat.\nRajkachori shell was hard and dry. Hope the manager will check it."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUQ2a0txa3FRRRAB",
+    "contributor_name": "Raveena Khanna",
+    "contributor_id": "106002473278241105243",
+    "review": "Recently I visited SINDHI SWEETS, which is located in sector 11, Panchkula. I was really excited to taste amazing food.So I tried their Chana Bhature - which was super delicious. Then I tried their Raj Kachori, which was full of yumminess. Then we ordered mango lassi and vada.Mango lassi was really yumm.I didn't like the taste of Vada as Vada's flavor was just filled with black pepper only. So BIG NO to their Vada. But I will definitely gonna try their more food.Chana Bhatura  5\u2b50\u2b50\u2b50\u2b50\u2b50 (Must try)Raj Kachori  5\u2b50\u2b50\u2b50\u2b50\u2b50Mango Lassi  4.5\u2b50\u2b50\u2b50\u2b50Vada 1\u2b50Quality and quantity of food - Really Good.Gret staff and Service was excellent.Beautiful and fancy Ambience. Highly recommended.Overall great experience \ud83d\udc4d see you soon."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNobk5QOEpREAE",
+    "contributor_name": "Geeta Chatrath",
+    "contributor_id": "103513977567301428542",
+    "review": "No one can beat the quality of sweets of Sindhi Sweets. Firstly,we ordered paneer masala dosa...it wasn't crisp .... therefore, quality can be improved. Secondly, amritsari stuffed  kulcha was not crisp in the manner it should actually be. Quantity of channa should  be increased."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNkbWR6NnR3RRAB",
+    "contributor_name": "Yash Preet",
+    "contributor_id": "100225043528897659055",
+    "review": "I asked a staff member about washroom and he directed me towards it very politely. I've never eaten here before but atmosphere is really good."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURHMzZuN1l3EAE",
+    "contributor_name": "vanshika dogra",
+    "contributor_id": "118327915684693051824",
+    "review": "Sindhi sweets is one the finest family restaurant . They serving quality and delicious food for ages . They recently opened up in Panchkula.This outlet is one of the biggest sweets shop in town ."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUR4N2EtM21RRRAB",
+    "contributor_name": "Richa Nasa",
+    "contributor_id": "107757954401804646794",
+    "review": "Nice restaurant for food.Tasty and fresh food.Not very expensive.Chana bhatura veg thali and falooda kulfi are my favourite here."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSURGc3R2SWtBRRAB",
+    "contributor_name": "Aditya Singla",
+    "contributor_id": "102932009772770367173",
+    "review": "Another great dining experience with sindhi, in a relatively new outlet! Food was good but you need to wait for a table! Service is on slower side as compared to other outlets! Good for once in time!"
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUMxM3FmRXB3RRAB",
+    "contributor_name": "Ether Tech",
+    "contributor_id": "102390378209684621004",
+    "review": "Best place for corporate dining.we have been bringing our clients for dinner and lunch ...Excellent staff..Nareshji leaves no stone unturned in serving our clients..very happy with experience....!!! Good food good staff"
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSURadkxXaXVRRRAB",
+    "contributor_name": "Jagdeep Garg",
+    "contributor_id": "106343133052345201888",
+    "review": "Food is awesome and I recommend it for tasy food items , atmosphere is also good, what I noticed or you can say dont like is suddenly a big rat ran from the main kitchen to directly our table, which I think they should take care for hygenic part.Two times waiters dropped the plates kept on the counter.So on some points they nees improvements otherwise food is must try."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNKaklqX3dRRRAB",
+    "contributor_name": "RAMAN NARULA",
+    "contributor_id": "112701329825938151844",
+    "review": "Very Nice ExperienceClean, Very Nice sitting areaFood was well madeNot too spicy as you mostly expect when eating outside \ud83d\ude1cService was fast and courteousPricing genuineOnly reason I am giving 4starts for food is to motivate them to brainstorm and make it even better."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUMxelBUX2R3EAE",
+    "contributor_name": "Alliance Properties",
+    "contributor_id": "103911494705582462788",
+    "review": "Pathetic behaviour of Mr Naresh and all the the staff \u2026 very bad experience. They just don\u2019t know how to talk \u2026 very Rude behaviour"
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUM2eThuTjdnRRAB",
+    "contributor_name": "Priyanka Sharma",
+    "contributor_id": "102806804638855866845",
+    "review": "Sindhi sweet as known for sweets.Most delicious  and quality is superb.i love laddo barfi which is awesome.Must try.Enough parking area and sitting and dinning is superb."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNsc19UVTN3RRAB",
+    "contributor_name": "Jatinder Mander",
+    "contributor_id": "115494782224518174959",
+    "review": "We had such a great dinner followed by our last dish Haka noodles. Extreme raw onions ruined the dish and it's sharpness brought tears to eyes and bitter Onion taste . Reported to Naresh and he was very argumentative and ruined our whole dinner experience. No help. Not coming again"
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURwNnRHVUF3EAE",
+    "contributor_name": "Anuradha Dewan",
+    "contributor_id": "104611758770192416846",
+    "review": "Good food cool atmosphere and quick service. Quality of food is really good"
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUMxa3F6ZlJBEAE",
+    "contributor_name": "Surya Kant",
+    "contributor_id": "111349214612318619117",
+    "review": "We have been coming to Sindhi sweets panchkula since opening.We are always greeted and personally attended by Mr.Naresh ji who always makes sure we have a pleasant and fulfilling experience. We would highly recommend sindhi sweets to all."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURHcXFQcUVREAE",
+    "contributor_name": "Dayasanti",
+    "contributor_id": "116376869519514148591",
+    "review": "One of the finest sweet shop chain in north india. They have a great rasgullas other sweets are just fine like others nothing extraordinary. Kachori, pakoras are great too. Golgappa and chat is average. Coming to restaurant section: great dosa, average bhaturas, good manchurian but pathetic noodles. Last time as well i asked specifically that don\u2019t put too much oil but i guess they don\u2019t listen. In overall i will go again for dosa for sure."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSURHdGJyMnFnRRAB",
+    "contributor_name": "Tanissh Aggarwal",
+    "contributor_id": "109064201386907676474",
+    "review": "Very bad experience, money value is zero. Went after watching advertisements in newspaper poori with petha and aloo and in actual they are serving chhole instead on petha. It took me 46 minute to get my order that too at last when i asked them i will wait only for 1 minute or i will go then they brought it. Manager, cashier staff was clueless what\u2019s going on. In front of manager after scolding him i asked the new to be customers to not order anything as they are taking so much of time, the manager was not interested in asking them to stay or consoling us to not to do so. Pathetic experience, very bad staff and management is zero."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNGN2VMMUlBEAE",
+    "contributor_name": "Rachit Sharma",
+    "contributor_id": "113256179174849040446",
+    "review": "A great place to hang out with your friends, colleagues and family. Great food and the best part is that they have even started serving biscuits with this tasty masala tea which gives it an additional taste."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNlMHYtcWR3EAE",
+    "contributor_name": "Ishan Arora",
+    "contributor_id": "103069104230196297422",
+    "review": "Ordered Chana Bhatura with Pineapple Raita. Chana Bhatura was fine but quantity was too little. Worst experience with Pineapple Raita, it was just Meethi dahi with a Piece of Pineapple piece over it. Also ordered Chilly Garlic Noodles, which was loaded with Oil."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURXcXV5cmFnEAE",
+    "contributor_name": "Shilpa",
+    "contributor_id": "106392822138607555050",
+    "review": "Sindhis has always been one of my favorites for sweets, quick snacks and dining in once in a while.This Sindhis in Panchkula sector 11 is centrally located. Very well stocked and always great quality products. The restaurant offers a variety of options too.There could be a challenge in finding a parking spot inside the market area; so avoid driving inside if you see too many cars. Better to park along the road if you see other cars parked roadside."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUNOaVBqRkVnEAE",
+    "contributor_name": "SURAJ DHIMAN",
+    "contributor_id": "112104945192895051265",
+    "review": "One of the best places to dine with family\u2026 we would like to thank Mr Naresh for excellent hospitality and fine dining experience"
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSUM1aDlMS1BnEAE",
+    "contributor_name": "Sam S",
+    "contributor_id": "116708500132567916026",
+    "review": "For people like me coming from the US, this is a treat. Although we get all Indian snacks in the US, the quality and taste here is so different and good.\nComfort food."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSURHbWN5bHZnRRAB",
+    "contributor_name": "Partik Singh",
+    "contributor_id": "116479208148957942594",
+    "review": "This is my 1st experience. In manu there are  many items to eat. And they are very tasty.But in my second time I ordered Dal halwa it's not good as much as I eat before . And also Dhai gol gappe it's like Items are not fresh. They have good sitting area but they are not good in food."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURCdzZ1Q1p3EAE",
+    "contributor_name": "RAVINA DHAMI",
+    "contributor_id": "114767057069274136512",
+    "review": "The restaurant has a cozy and inviting atmosphere, and the staff was incredibly friendly and attentive.\nAlso the food was amazing."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUMxMFluUF9BRRAB",
+    "contributor_name": "Sapna Sehgal",
+    "contributor_id": "104857466535519928952",
+    "review": "The food is  good  and great place  and  the  staff is soft- spoken especially shashi paul and especially chana bhatura is very tasty \ud83d\ude0b"
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSUNHa05xUHhnRRAB",
+    "contributor_name": "Latika Joshi",
+    "contributor_id": "110185408367274874523",
+    "review": "Awesome place for family get together. Tasty Food specially some items without onion and garlic. Good Service by staff. Mr. Bavender Parsad (Restaurant Manager) and His staff is welcoming and always with a smile."
+  },
+  {
+    "id": "ChZDSUhNMG9nS0VJQ0FnSURXMzkzdlBBEAE",
+    "contributor_name": "Rohit Sharma",
+    "contributor_id": "116443826303803148472",
+    "review": "Have been a regularly visiting Sindhi Sweets in Sector 17 Chandigarh since I was a kid. Love their variety in snacks n sweets. So glad that they opened up an outlet in Panchkula."
+  },
+  {
+    "id": "ChdDSUhNMG9nS0VJQ0FnSURwOTR5TThRRRAB",
+    "contributor_name": "Damanpreet Cheema",
+    "contributor_id": "108574095683558474662",
+    "review": "Food is ok, but the senior staff is very rude. I called them for a table booking as our guests were more than 10, I talked to two different people and both were very rude. They didn't have even basic etiquettes to talk and were not even concerned about any booking. Very bad experience, was not expecting this from Sindhi Sweet, Sector 9, Pkl. So I got my booking done at some other place."
   }
 ]

@@ -18,11 +18,5 @@ def analyse():
     if search_term:
         business = asyncio.run(scraper(text=search_term))
         if business:
-            # Access the columns of the record
-            columns = {
-                'id': business.id,
-                'title': business.title,
-                'address': business.address,
-            }
-            return make_response(jsonify(columns), 200)
+            return make_response(jsonify(business.serialize), 200)
     return make_response(jsonify({"message": "No items found"}), 404)

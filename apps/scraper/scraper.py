@@ -1,13 +1,11 @@
 import json
 
 from playwright.async_api import Playwright, async_playwright
-from apps.scraper.models import Business
-from apps.utils.utils import string_to_md5
-import io, base64
-from PIL import Image
+from apps.scraper.models import Business, Reviews
+import re
 
 
-async def extract_data(page) -> list:
+async def extract_reviews_data(page) -> list:
     """
     Extracts the results information from the page
 
@@ -16,17 +14,16 @@ async def extract_data(page) -> list:
 
     Returns:
         A list containing details of results as dictionary. The dictionary
-         has title, review count, rating, address of various results
+         has contributor name and review.
     """
 
     # Xpaths.
     review_box_xpath = '//div[@jscontroller="fIQYlf"] '
     review_xpath = '//span[@data-expandable-section]'
     secondary_review_xpath = '//span[@class="review-full-text"]'
-    author_xpath = '//div[@class="TSUbDb"]'
-    title_xpath = '//div[@data-attrid="title"]'
-    address_xpath = '//div[@data-attrid="kc:/location/location:address"]'
-    image_xpath = '//button[@data-clid="local-photo-browser"]//img'
+    contributor_name_xpath = '//div[@class="TSUbDb"]'
+    contributor_id_xpath = '//div[@class="TSUbDb"]//a'
+    review_id_xpath = '//button[@data-ri]'
 
     # Scraped data
     data = []
@@ -45,55 +42,147 @@ async def extract_data(page) -> list:
         except:
             review = ""
 
-        # Scrap author name.
+        # Scrap contributor name.
         try:
-            author_name = await result_elem.locator(author_xpath).inner_text()
+            name = await result_elem.locator(contributor_name_xpath).inner_text()
         except:
-            author_name = ""
+            name = ""
+
+        # Scrap review id
+        try:
+            review_id = await result_elem.locator(review_id_xpath).first.get_attribute('data-ri')
+        except:
+            review_id = ""
+
+        try:
+            contributor_id = ""
+            _href = await result_elem.locator(contributor_id_xpath).first.get_attribute('href')
+            if _href is not None:
+                temp = re.findall(r'\d+', _href)
+                res = list(map(int, temp))
+                if res[0]:
+                    contributor_id = str(res[0])
+        except:
+            contributor_id = ""
 
         # Prepare list.
-        items.append({
-            'author_name': author_name,
+        data.append({
+            'id': review_id,
+            'contributor_name': name,
+            'contributor_id': contributor_id,
             'review': review,
         })
 
-    # Scrap title.
+    return data
+
+
+async def extract_business_data(page) -> dict:
+    """
+    Extracts business information from the page
+
+    Args:
+        page: Playwright page object
+
+    Returns:
+        A dictionary containing business information from the page
+    """
+
+    data = {}
+
+    # Xpaths
+    business_title_xpath = '//div[@role="main"]//h1'
+    business_address_xpath = '//button[@data-item-id="address"]'
+    business_website_xpath = '//a[@data-item-id="authority"]'
+    business_phone_xpath = '//button[starts-with(@data-item-id, "phone:tel:")]'
+    business_category_xpath = '//button[contains(@jsaction, "category")]'
+    business_image_url_xpath = '//button[contains(@jsaction, "heroHeaderImage")]//img'
+
+    # Business title
     try:
-        title = await page.locator(title_xpath).inner_text()
+        business_title = await page.locator(business_title_xpath).first.inner_text()
     except:
-        title = ""
+        business_title = ''
 
-    # Scrap address
+    # Business address
     try:
-        address = await page.locator(address_xpath).inner_text()
+        business_address = await page.locator(business_address_xpath).first.inner_text()
     except:
-        address = ""
+        business_address = ""
 
-    # Scrap Image
-    image_url = ""
+    # Business website
     try:
-        image = await page.locator(image_xpath).get_attribute("src")
-        if image:
-            image = image[image.find(",") + 1:]
-            image_url = "./media/business/" + string_to_md5(image) + ".png"
-            img = Image.open(io.BytesIO(base64.decodebytes(bytes(image, "utf-8"))))
-            if img:
-                img.save(image_url)
+        business_website = await page.locator(business_website_xpath).first.get_attribute('href')
     except:
-        image_url = ""
+        business_website = ""
 
-    print(image_url)
+    # Business phone
+    try:
+        business_phone = await page.locator(business_phone_xpath).first.inner_text()
+    except:
+        business_phone = ""
 
-    data.append({
-        "title": title,
-        "address": address,
-        "image": image_url,
-        "items": []
-    })
+    # Business category
+    try:
+        business_category = await page.locator(business_category_xpath).first.inner_text()
+    except:
+        business_category = ''
 
-    data[0]['items'] = items
+    # Business image
+    try:
+        business_image = await page.locator(business_image_url_xpath).first.get_attribute('src')
+    except:
+        business_image = ""
+
+    data = {
+        'title': business_title,
+        'address': business_address,
+        'website': business_website,
+        'phone': business_phone,
+        'category': business_category,
+        'image': business_image
+    }
 
     return data
+
+
+def add_business(pid: str, data: dict):
+    # Insert data to database.
+    business = None
+    if pid and data.get('title'):
+        business = Business(
+            id=pid,
+            title=data.get('title'),
+            address=data.get('address'),
+            website=data.get('website'),
+            phone=data.get('phone'),
+            category=data.get('category'),
+            image=data.get('image')
+        )
+        if business.exist():
+            business = business.update()
+        else:
+            business = business.create()
+
+    return business
+
+
+def add_business_reviews(pid: str, data: list) -> list:
+    reviews = []
+    if pid:
+        for item in data:
+            review = Reviews(
+                id=item.get('id'),
+                contributor_name=item.get('contributor_name'),
+                contributor_id=item.get('contributor_id'),
+                review=item.get('review'),
+                business_id=pid
+            )
+            if review.exist():
+                review = review.update()
+            else:
+                review = review.create()
+            reviews.append(review)
+    return reviews
 
 
 async def run(playwright: Playwright, search_term: str) -> Business | None:
@@ -127,32 +216,59 @@ async def run(playwright: Playwright, search_term: str) -> Business | None:
         '//a[@data-async-trigger="reviewDialog"]').first.wait_for(
         timeout=10000)
 
-    # Click reviews button
-    await page.locator('//a[@data-async-trigger="reviewDialog"]').first.click()
+    # Get place id.
+    try:
+        pid = await page.locator(
+            '//div[@data-attribution="lu-rap-thank-you-dialog"]').first.get_attribute('data-pid')
+    except:
+        pid = None
 
-    # Initialize the number of pagination required
-    pagination_limit = 3
-
-    # Iterate to load reviews for mentioned number of pages
-    for page_number in range(pagination_limit):
-        await page.locator('//div[@class="review-dialog-list"]').hover()
-        await page.mouse.wheel(0, 100000)
-        page_number += 1
-        await page.wait_for_timeout(2000)
-
-    # Extract all displayed reviews
-    data = await extract_data(page)
-
-    # Insert data to database.
+    # Returnable business.
     business = None
-    title = data[0]['title'] if data[0]['title'] else search_term
-    if title:
-        business = Business(title, data[0]['address'], data[0]['image'])
-        business = business.create()
+    if pid:
+        # Click reviews button
+        await page.locator('//a[@data-async-trigger="reviewDialog"]').first.click()
 
-    # Save all extracted data as a JSON file
-    with open('google_reviews.json', 'w') as f:
-        json.dump(data, f, indent=2)
+        # Initialize the number of pagination required
+        pagination_limit = 3
+
+        # Iterate to load reviews for mentioned number of pages
+        for page_number in range(pagination_limit):
+            await page.locator('//div[@class="review-dialog-list"]').hover()
+            await page.mouse.wheel(0, 100000)
+            page_number += 1
+            await page.wait_for_timeout(2000)
+
+        # Extract all displayed reviews
+        reviews = await extract_reviews_data(page)
+
+        # Close review dialog.
+        await page.locator('//g-lightbox//div[@aria-label="Close"]').last.click()
+
+        # Wait for map button
+        await page.locator(
+            '//a[starts-with(@href, "/maps/place/")]').first.wait_for(
+            timeout=10000)
+
+        # Click map link
+        await page.locator('//a[starts-with(@href, "/maps/place/")]').first.click()
+
+        # Wait form main container
+        await page.locator('[role="main"]').first.wait_for(
+            timeout=10000)
+
+        # Extract all displayed reviews
+        data = await extract_business_data(page)
+        if data:
+            business = add_business(pid, data)
+
+        # Insert reviews.
+        if reviews:
+            new_reviews = add_business_reviews(pid, reviews)
+
+        # Save all extracted data as a JSON file - Used for testing
+        # with open('google_reviews.json', 'w') as f:
+        #     json.dump(reviews, f, indent=2)
 
     # ---------------------
     await context.close()
