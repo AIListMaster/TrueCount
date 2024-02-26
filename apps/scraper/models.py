@@ -40,8 +40,8 @@ class Business(db.Model):
             'phone': str(self.phone),
             'category': str(self.category),
             'image': str(self.image),
-            'created': str(self.created),
-            'updated': str(self.updated),
+            'created': str(self.created.strftime('%B %d, %Y')),
+            'updated': str(self.updated.strftime('%B %d, %Y')),
             'reviews': [i.serialize for i in self.reviews]
         }
 
@@ -99,8 +99,8 @@ class Reviews(db.Model):
             'contributor_name': str(self.contributor_name),
             'contributor_id': str(self.contributor_id),
             'review': str(self.review),
-            'created': str(self.created),
-            'updated': str(self.updated)
+            'created': str(self.created.strftime('%B %d, %Y')),
+            'updated': str(self.updated.strftime('%B %d, %Y'))
         }
 
     def create(self):

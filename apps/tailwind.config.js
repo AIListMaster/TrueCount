@@ -47,6 +47,7 @@ module.exports = {
         success: '#219653',
         danger: '#D34053',
         warning: '#FFA70B',
+        'brand-red': '#C70039'
       },
       fontSize: {
         'title-xxl': ['44px', '55px'],
