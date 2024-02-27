@@ -36,3 +36,6 @@ apps/static/assets/.temp
 
 # Node Modules
 node_modules
+
+# Ignore trained models
+apps/save
