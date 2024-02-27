@@ -2,6 +2,7 @@ import json
 
 from playwright.async_api import Playwright, async_playwright
 from apps.scraper.models import Business, Reviews
+from apps.utils.utils import slugify
 import re
 
 
@@ -171,14 +172,16 @@ def add_business(pid: str, data: dict):
     # Insert data to database.
     business = None
     if pid and data.get('title'):
+        title = data.get('title')
         business = Business(
-            id=pid,
-            title=data.get('title'),
+            business_id=pid,
+            title=title,
             address=data.get('address'),
             website=data.get('website'),
             phone=data.get('phone'),
             category=data.get('category'),
-            image=data.get('image')
+            image=data.get('image'),
+            slug=slugify(title)
         )
         if business.exist():
             business = business.update()
@@ -188,18 +191,18 @@ def add_business(pid: str, data: dict):
     return business
 
 
-def add_business_reviews(pid: str, data: list) -> list:
+def add_business_reviews(business_id: int, data: list) -> list:
     reviews = []
-    if pid:
+    if business_id:
         for item in data:
             review = Reviews(
-                id=item.get('id'),
+                review_id=item.get('id'),
                 rating=item.get('rating'),
                 sentiment=item.get('sentiment'),
                 contributor_name=item.get('contributor_name'),
                 contributor_id=item.get('contributor_id'),
                 review=item.get('review'),
-                business_id=pid
+                business_id=business_id
             )
             if review.exist():
                 review = review.update()
@@ -287,8 +290,8 @@ async def run(playwright: Playwright, search_term: str) -> Business | None:
             business = add_business(pid, data)
 
         # Insert reviews.
-        if reviews:
-            new_reviews = add_business_reviews(pid, reviews)
+        if reviews and business:
+            new_reviews = add_business_reviews(business.id, reviews)
 
         # Save all extracted data as a JSON file - Used for testing
         with open('google_reviews.json', 'w') as f:

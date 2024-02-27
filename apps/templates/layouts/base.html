@@ -17,7 +17,7 @@
   {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
-<body class="flex min-h-full">
+<body class="min-h-full">
 
 <div class="w-full">
 
@@ -25,13 +25,19 @@
   {% include 'includes/header.html' %}
   <!-- ===== Header End ===== -->
 
-  <main class="lg:relative lg:mb-28 w-full max-w-screen-xl mx-auto">
+  <main class="lg:relative w-full max-w-screen-xl mx-auto">
     <div class="relative">
       <div class="pb-12 pt-16 sm:pb-4 lg:pt-12">
         {% block content %}{% endblock content %}
       </div>
     </div>
   </main>
+</div>
+
+<div class="w-full">
+  <div class="max-w-screen-xl mx-auto py-5 text-center">
+    <span>© 2024 TrueCount. All rights reserved.</span>
+  </div>
 </div>
 
 <!-- Vue JS  -->
