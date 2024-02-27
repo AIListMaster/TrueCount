@@ -79,16 +79,20 @@ class Reviews(db.Model):
     contributor_name = db.Column(db.String(30), nullable=True)
     contributor_id = db.Column(db.String(100), nullable=True)
     review = db.Column(db.Text, nullable=True)
+    rating = db.Column(db.Float, nullable=False)
+    sentiment = db.Column(db.Integer, nullable=False)
     business_id = db.Column(db.String(100), db.ForeignKey('Business.id'), nullable=False)
     created = db.Column(db.Date, default=datetime.utcnow())
     updated = db.Column(db.Date, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
-    def __init__(self, id, business_id, contributor_name=None, contributor_id=None, review=None):
+    def __init__(self, id, business_id, rating, sentiment, contributor_name=None, contributor_id=None, review=None):
         self.id = id
         self.business_id = business_id
         self.contributor_name = contributor_name
         self.contributor_id = contributor_id
         self.review = review
+        self.rating = rating
+        self.sentiment = sentiment
 
     @property
     def serialize(self):
@@ -99,12 +103,15 @@ class Reviews(db.Model):
             'contributor_name': str(self.contributor_name),
             'contributor_id': str(self.contributor_id),
             'review': str(self.review),
+            'rating': str(self.rating),
+            'sentiment': str(self.sentiment),
             'created': str(self.created.strftime('%B %d, %Y')),
             'updated': str(self.updated.strftime('%B %d, %Y'))
         }
 
     def create(self):
-        review = Reviews(self.id, self.business_id, self.contributor_name, self.contributor_id, self.review)
+        review = Reviews(self.id, self.business_id, self.rating, self.sentiment, self.contributor_name,
+                         self.contributor_id, self.review)
         db.session.add(review)
         db.session.commit()
         return review
@@ -115,6 +122,8 @@ class Reviews(db.Model):
             review.contributor_name = self.contributor_name
             review.contributor_id = self.contributor_id
             review.review = self.review
+            review.rating = self.rating
+            review.sentiment = self.sentiment
             db.session.commit()
             return review
         return False

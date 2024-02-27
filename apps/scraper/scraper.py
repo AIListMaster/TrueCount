@@ -24,6 +24,10 @@ async def extract_reviews_data(page) -> list:
     contributor_name_xpath = '//div[@class="TSUbDb"]'
     contributor_id_xpath = '//div[@class="TSUbDb"]//a'
     review_id_xpath = '//button[@data-ri]'
+    rating_xpath = '//span[contains(@aria-label, "Rated")]'
+
+    # Regex patterns
+    rating_pattern = r"(\d+\.\d+)"
 
     # Scraped data
     data = []
@@ -65,12 +69,30 @@ async def extract_reviews_data(page) -> list:
         except:
             contributor_id = ""
 
+        # Scrap rating.
+        try:
+            rating_text = await result_elem.locator(rating_xpath).first.get_attribute(
+                'aria-label')
+            match = re.search(rating_pattern, rating_text)
+            if match:
+                rating = float(match.group(1))
+            else:
+                rating = 0.0
+        except:
+            rating = 0.0
+
+        # Sentiment
+        sentiment_mapping = {rating < 2.5: 0, 2.5 <= rating < 3.5: 1, rating > 3.5: 2}
+        sentiment = sentiment_mapping.get(True, 0)
+
         # Prepare list.
         data.append({
             'id': review_id,
             'contributor_name': name,
             'contributor_id': contributor_id,
             'review': review,
+            'rating': rating,
+            'sentiment': sentiment
         })
 
     return data
@@ -172,6 +194,8 @@ def add_business_reviews(pid: str, data: list) -> list:
         for item in data:
             review = Reviews(
                 id=item.get('id'),
+                rating=item.get('rating'),
+                sentiment=item.get('sentiment'),
                 contributor_name=item.get('contributor_name'),
                 contributor_id=item.get('contributor_id'),
                 review=item.get('review'),
@@ -230,7 +254,7 @@ async def run(playwright: Playwright, search_term: str) -> Business | None:
         await page.locator('//a[@data-async-trigger="reviewDialog"]').first.click()
 
         # Initialize the number of pagination required
-        pagination_limit = 3
+        pagination_limit = 10
 
         # Iterate to load reviews for mentioned number of pages
         for page_number in range(pagination_limit):
@@ -267,8 +291,8 @@ async def run(playwright: Playwright, search_term: str) -> Business | None:
             new_reviews = add_business_reviews(pid, reviews)
 
         # Save all extracted data as a JSON file - Used for testing
-        # with open('google_reviews.json', 'w') as f:
-        #     json.dump(reviews, f, indent=2)
+        with open('google_reviews.json', 'w') as f:
+            json.dump(reviews, f, indent=2)
 
     # ---------------------
     await context.close()
