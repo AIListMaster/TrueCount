@@ -7,6 +7,7 @@ from apps.home import blueprint
 from flask import render_template, request
 from apps.scraper.forms import ScraperForm
 from apps.scraper.models import Business
+from apps.utils.analyzer import SentimentAnalyzer
 
 
 @blueprint.route('/')
@@ -26,4 +27,9 @@ def route_business(business_id):
     item = []
     if business:
         item = business.serialize
-    return render_template('home/business.html', item=item)
+    # reviews = []
+    # for index, review in enumerate(business.reviews):
+    #     analyzer = SentimentAnalyzer()
+    #     reviews.append(analyzer.predict(review.review))
+
+    return render_template('home/business.html', item=item, reviews=[])

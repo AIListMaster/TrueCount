@@ -26,6 +26,7 @@ async def extract_reviews_data(page) -> list:
     contributor_id_xpath = '//div[@class="TSUbDb"]//a'
     review_id_xpath = '//button[@data-ri]'
     rating_xpath = '//span[contains(@aria-label, "Rated")]'
+    image_url_xpath = '//a//img[contains(@src,"lh3.googleusercontent.com")]'
 
     # Regex patterns
     rating_pattern = r"(\d+\.\d+)"
@@ -82,18 +83,28 @@ async def extract_reviews_data(page) -> list:
         except:
             rating = 0.0
 
-        # Sentiment
-        sentiment_mapping = {rating < 2.5: 0, 2.5 <= rating < 3.5: 1, rating > 3.5: 2}
-        sentiment = sentiment_mapping.get(True, 0)
+        # Scrap contributor image.
+        try:
+            contributor_pic = await result_elem.locator(image_url_xpath).first.get_attribute('src')
+            if contributor_pic is not None:
+                head, sep, tail = contributor_pic.partition('=')
+                contributor_pic = head
+        except:
+            contributor_pic = ""
+
+        # Rating to sentiment mapping
+        rmap = {rating < 2.5: 0, 2.5 <= rating < 3.5: 1, rating > 3.5: 2}
+        rmap = rmap.get(True, 0)
 
         # Prepare list.
         data.append({
             'id': review_id,
             'contributor_name': name,
             'contributor_id': contributor_id,
+            'contributor_pic': contributor_pic,
             'review': review,
             'rating': rating,
-            'sentiment': sentiment
+            'rmap': rmap
         })
 
     return data
@@ -198,9 +209,10 @@ def add_business_reviews(business_id: int, data: list) -> list:
             review = Reviews(
                 review_id=item.get('id'),
                 rating=item.get('rating'),
-                sentiment=item.get('sentiment'),
+                rmap=item.get('rmap'),
                 contributor_name=item.get('contributor_name'),
                 contributor_id=item.get('contributor_id'),
+                contributor_pic=item.get('contributor_pic'),
                 review=item.get('review'),
                 business_id=business_id
             )
@@ -221,7 +233,7 @@ async def run(playwright: Playwright, search_term: str) -> Business | None:
         playwright: Playwright instance
     """
     browser = await playwright.chromium.launch(
-        headless=False,
+        headless=True,
         # proxy={'server': '127.0.0.1', 'port': 4444}
     )
     context = await browser.new_context()
@@ -257,7 +269,7 @@ async def run(playwright: Playwright, search_term: str) -> Business | None:
         await page.locator('//a[@data-async-trigger="reviewDialog"]').first.click()
 
         # Initialize the number of pagination required
-        pagination_limit = 10
+        pagination_limit = 20
 
         # Iterate to load reviews for mentioned number of pages
         for page_number in range(pagination_limit):

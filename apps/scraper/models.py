@@ -87,21 +87,32 @@ class Reviews(db.Model):
     review_id = db.Column(db.String(100), nullable=False)
     contributor_name = db.Column(db.String(30), nullable=True)
     contributor_id = db.Column(db.String(100), nullable=True)
+    contributor_pic = db.Column(db.String(255), nullable=True)
     review = db.Column(db.Text, nullable=True)
     rating = db.Column(db.Float, nullable=False)
-    sentiment = db.Column(db.Integer, nullable=False)
+    rmap = db.Column(db.Integer, nullable=False)
+    sentiment = db.Column(db.Integer, nullable=True)
     business_id = db.Column(db.Integer, db.ForeignKey('Business.id'), nullable=False)
     created = db.Column(db.DateTime, default=datetime.utcnow())
     updated = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
-    def __init__(self, review_id, business_id, rating, sentiment, contributor_name=None, contributor_id=None,
+    def __init__(self,
+                 review_id,
+                 business_id,
+                 rating, rmap,
+                 sentiment=None,
+                 contributor_name=None,
+                 contributor_id=None,
+                 contributor_pic=None,
                  review=None):
         self.review_id = review_id
         self.business_id = business_id
         self.contributor_name = contributor_name
         self.contributor_id = contributor_id
+        self.contributor_pic = contributor_pic
         self.review = review
         self.rating = rating
+        self.rmap = rmap
         self.sentiment = sentiment
 
     @property
@@ -113,16 +124,25 @@ class Reviews(db.Model):
             'business_id': str(self.business_id),
             'contributor_name': str(self.contributor_name),
             'contributor_id': str(self.contributor_id),
+            'contributor_pic': str(self.contributor_pic),
             'review': str(self.review),
             'rating': str(self.rating),
+            'rmap': str(self.rmap),
             'sentiment': str(self.sentiment),
             'created': str(self.created.strftime('%B %d, %Y')),
             'updated': str(self.updated.strftime('%B %d, %Y'))
         }
 
     def create(self):
-        review = Reviews(self.review_id, self.business_id, self.rating, self.sentiment, self.contributor_name,
-                         self.contributor_id, self.review)
+        review = Reviews(self.review_id,
+                         self.business_id,
+                         self.rating,
+                         self.rmap,
+                         self.sentiment,
+                         self.contributor_name,
+                         self.contributor_id,
+                         self.contributor_pic,
+                         self.review)
         db.session.add(review)
         db.session.commit()
         return review
@@ -132,8 +152,10 @@ class Reviews(db.Model):
         if review is not None:
             review.contributor_name = self.contributor_name
             review.contributor_id = self.contributor_id
+            review.contributor_pic = self.contributor_pic
             review.review = self.review
             review.rating = self.rating
+            review.rmap = self.rmap
             review.sentiment = self.sentiment
             db.session.commit()
             return review

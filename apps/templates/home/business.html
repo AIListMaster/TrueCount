@@ -55,14 +55,28 @@
         {% endif %}
       </header>
       <hr class="my-12 border-slate-100">
-      <div class="prose prose-slate mt-14">
-        <h2 class="mt-2 text-2xl mb-6 font-bold text-slate-900">Customer Reviews</h2>
+    </div>
+    <div class="prose prose-slate mt-14">
+      <h2 class="mt-2 text-2xl mb-6 font-bold text-slate-900">Customer Reviews</h2>
+      <div class="review-cards">
         {% for review in item.reviews %}
         {% if review.review %}
-        <div class="review mb-6 border-b pb-6 border-slate-300">
-          <h3 class="text-lg capitalize font-medium">{{ review.contributor_name }}</h3>
-          <div class="">
-            {{ review.review }}
+        <div class="review-card mb-4 w-full max-w-sm bg-white border border-whiter rounded-lg shadow">
+          <div class="flex items-center justify-between p-4 border-b border-slate-100 bg-gray-2">
+            <div class="contributor flex items-center">
+              <img class="w-14 h-14 rounded-full mr-6 shadow" src="{{ review.contributor_pic }}=w250-h250"/>
+              {% if review.contributor_name %}
+              <h3 class="text-l font-semibold text-slate-700 capitalize">{{ review.contributor_name }}</h3>
+              {% endif %}
+            </div>
+            <div class="sentiment">
+              <i class="fa-solid fa-face-smile text-meta-6 text-2xl"></i>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-4">
+            <div class="text-sm text-justify text-slate-500 leading-5">
+              {{ review.review }}
+            </div>
           </div>
         </div>
         {% endif %}
@@ -72,3 +86,19 @@
   </div>
 </article>
 {% endblock content %}
+
+{% block javascripts %}
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.review-cards').masonry({
+      itemSelector: '.review-card',
+      columnWidth: 200
+    });
+  })
+</script>
+{% endblock javascripts %}
