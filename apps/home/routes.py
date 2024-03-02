@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 """
-Copyright (c) 2019 - present AppSeed.us
+Copyright (c) 2024 - SarovarCreative
 """
 
 from apps.home import blueprint
 from flask import render_template, request
 from apps.scraper.forms import ScraperForm
-from apps.scraper.models import Business
-from apps.utils.analyzer import SentimentAnalyzer
+from apps.scraper.models import Business, Reviews
+from sqlalchemy import create_engine, Column, Integer, String, select, func
 
 
 @blueprint.route('/')
@@ -24,12 +24,23 @@ def route_default():
 @blueprint.route('/business/<string:business_id>', methods=['GET'])
 def route_business(business_id):
     business = Business.query.filter_by(id=business_id).first_or_404(description="Business not found")
+
+    # Initialize vars
+    overall_rating = 0
+
+    # Calculate review.
+    review_details = Reviews.query.with_entities(func.sum(Reviews.sentiment), func.count(Reviews.sentiment)).filter_by(
+        business_id=business_id).all()
+
+    # Extract review.
+    if review_details[0]:
+        sum, total = review_details[0]
+        if sum and total:
+            overall_rating = (sum / (total * 2)) * 100
+            overall_rating = round(overall_rating, 2)
+
     item = []
     if business:
         item = business.serialize
-    # reviews = []
-    # for index, review in enumerate(business.reviews):
-    #     analyzer = SentimentAnalyzer()
-    #     reviews.append(analyzer.predict(review.review))
 
-    return render_template('home/business.html', item=item, reviews=[])
+    return render_template('home/business.html', item=item, overall_rating=overall_rating)

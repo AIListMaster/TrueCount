@@ -1,4 +1,4 @@
-from apps.utils.analyzer import SentimentAnalyzer
+from apps.analyzer.analyzer import SentimentAnalyzer
 
 
 def process_batch(batch):

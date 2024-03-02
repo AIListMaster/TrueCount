@@ -2,10 +2,9 @@
 """
 Copyright (c) 2024 - SarovarCreative
 """
-import asyncio
 from apps.analyzer import blueprint
-from flask import request, jsonify, make_response
-from apps.utils.batch import batch_processing
+from flask import jsonify, make_response
+from apps.analyzer.batch import batch_processing
 from apps.scraper.models import Reviews
 
 

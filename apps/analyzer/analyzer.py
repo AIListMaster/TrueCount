@@ -5,7 +5,6 @@ Copyright (c) 2024 - SarovarCreative
 
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
-import os
 
 
 class SentimentAnalyzer:
